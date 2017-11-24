@@ -1,18 +1,20 @@
 # nettyupload
 
-# ·şÎñ¶ËÆô¶¯·şÎñ£º
+# æœåŠ¡ç«¯å¯åŠ¨æœåŠ¡ï¼š
+`
 NettyUploadServer nettyUploadServer = new NettyUploadServer("127.0.0.1",2777,"E:\\");
 nettyUploadServer.startup();
 		
 //nettyUploadServer.shutdownServer();
+`
 
-
-# ¿Í»§¶ËÉÏ´«ÎÄ¼ş£º
+# å®¢æˆ·ç«¯ä¸Šä¼ æ–‡ä»¶ï¼š
+`
 File file = new File("D:\\app.war");
 int res = UploadFileClient.uploadFile(file, "127.0.0.1",2777);
+`
 
-
-# ÌØµã£º
-1 Netty¼òµ¥ÉÏ´«ÎÄ¼ş(ÎÄ¼ş´óĞ¡ÎŞÏŞÖÆ)
-2 ¿Í»§¶Ë¿ÉÒÔÍ¬Ê±ÉÏ´«¶à¸öÎÄ¼ş(Í¬Ê±¶à´Îµ÷ÓÃUploadFileClient.uploadFile)
-3 ¿Í»§¶ËÉÏ´«Ò»¸öÎÄ¼şÍê³Éºó»á×Ô¶¯¹Ø±ÕÁ¬½Ó
+# ç‰¹ç‚¹ï¼š
+1 Nettyç®€å•ä¸Šä¼ æ–‡ä»¶(æ–‡ä»¶å¤§å°æ— é™åˆ¶)
+2 å®¢æˆ·ç«¯å¯ä»¥åŒæ—¶ä¸Šä¼ å¤šä¸ªæ–‡ä»¶(åŒæ—¶å¤šæ¬¡è°ƒç”¨UploadFileClient.uploadFile)
+3 å®¢æˆ·ç«¯ä¸Šä¼ ä¸€ä¸ªæ–‡ä»¶å®Œæˆåä¼šè‡ªåŠ¨å…³é—­è¿æ¥
