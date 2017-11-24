@@ -1,0 +1,48 @@
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <property name="APP_NAME" value="nettyupload" />
+	<property name="LOG_ROOT_PATH" value="/mnt" />
+    <!-- 控制台 start-->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{40}[%method] - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </layout>
+    </appender>
+    <!-- 控制台 end-->
+	 <!-- 业务日志文件 start-->
+	<appender name="busLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	   	<fileNamePattern>${LOG_ROOT_PATH}/${APP_NAME}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+	   	<maxHistory>7</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+          <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{40}[%method] - %msg%n</pattern>
+	   	<charset>UTF-8</charset>  
+	  </encoder>   
+	 </appender>
+    <!-- 业务日志文件 end-->
+    <!-- 默认配置 -->
+    <root level="DEBUG">
+        <appender-ref ref="stdout" />
+        <appender-ref ref="busLog" />
+    </root>
+
+    <!-- dubbo框架日志 start-->
+    <appender name="dubboLogfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ROOT_PATH}/dubbo/${APP_NAME}_dubbo.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{40}[%method] - %msg%n</pattern>
+        </layout>
+    </appender>
+    <logger name="com.alibaba.dubbo" level="DEBUG"  additivity="false">
+        <appender-ref ref="dubboLogfile" />
+    </logger>
+    <!-- dubbo框架日志 end-->
+</configuration>
